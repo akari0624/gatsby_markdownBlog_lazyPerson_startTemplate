@@ -9,7 +9,9 @@ module.exports = {
     rootDomain: `${SiteMeta.YOUR_ROOT_DOMAIN}`,
     oneRowWidth:`${SiteMeta.WHEN_MAX_WIDTH_LESS_THAN_THIS_WIDTH_BECOME_ONE_ROW}`,
   },
-  
+
+  pathPrefix: `${SiteMeta.PATH_PREFIX}`,
+
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-remark-copy-linked-files`,
