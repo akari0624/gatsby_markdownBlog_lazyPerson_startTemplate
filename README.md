@@ -5,56 +5,59 @@
 
 ## Install
 
-git clone 整包下來到你的directory裡
+- 電腦裡要先有[node.JS和npm](https://nodejs.org/en/download/)
+
+- git clone 整包下來到你的directory裡  
 ```sh
 git clone  $the_git_url_of_this_repo
 ```
 
-第一層是gatsby-cli 必須先安裝，這樣好處是不用把gatsby-cli安裝到global
+- 第一層是gatsby-cli 必須先安裝，這樣好處是不用把gatsby-cli安裝到global  
 ```sh
 npm install
 ```
 
-cd 到真正的部落格那一層
+- cd 到真正的部落格那一層  
 ```sh
 cd myblog
 ```
 
-再安裝所有為這個blog-template設定好的 dependencies 
+- 再安裝所有為這個blog-template設定好的 dependencies  
 ```sh
 npm install
 ```
 
-這樣都沒問題的話，就可以開始用了。
+- 這樣都沒問題的話，就可以開始用了。  
 
 ## how to write article
-- 下面的指令中的`/`都是指`myblog/`
+- 下面的指令中的`/`都是指`myblog/`  
 
-- markdown全部都寫在`/src/pages`底下
-一層層的年月日的資料夾會變成網址，markdown檔名必須命名為`index.md`
-`index.md`裡要顯示的圖片就把它跟`index.md`放在同一層，在markdown裡引用即可
+- markdown全部都寫在`/src/pages`底下  
+一層層的年月日的資料夾會變成網址，markdown檔名必須命名為`index.md`  
+`index.md`裡要顯示的圖片就把它跟`index.md`放在同一層，在markdown裡引用即可  
 ```markdown
   ![](question_mark.jpg)
 ```
 
-- 嵌入iframe也沒有問題，都包進來的plugin都已經設定好了
-`見 /src/pages/2018/08/10/example_md2/index.md`
+- 嵌入iframe也沒有問題，都包進來的plugin都已經設定好了  
+`見 /src/pages/2018/08/10/example_md2/index.md`  
 
-- code區塊會自動語法上色
+- code區塊會自動語法上色  
 
-- 開啟gatsby建立於webpack devServer上的dev server，以hot reload模式來寫blog
+- 開啟gatsby建立於webpack devServer上的dev server，以hot reload模式來寫  
+blog
 ```sh
 npm run develop
 ```
 
 ## deply
-把部落格打包成靜態頁面於`/public`底下，就可以發布到想要放的地方
+把部落格打包成靜態頁面於`/public`底下，就可以發布到想要放的地方  
 ```sh
 npm run build
 ```
 
 ## site meta data
-`/conf/site_meta/index.js`裡已經有一些site meta data可以設定
+`/conf/site_meta/index.js`裡已經有一些site meta data可以設定  
   ```javaScript
   YOUR_BLOG_TITLE :'somebody\'s blog',  //部落格標題
   YOUR_ROOT_DOMAIN :'https://this_is_your_domain.io',  //domain
