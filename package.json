@@ -1,0 +1,15 @@
+{
+  "name": "my_blog",
+  "version": "1.0.0",
+  "description": "my blog that build on gatsby",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start_new_gatsby": "gatsby new myblog https://github.com/gatsbyjs/gatsby-starter-default#v2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gatsby-cli": "^1.1.58"
+  }
+}

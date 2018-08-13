@@ -1,0 +1,13 @@
+# gatsby cli level dependencies
+node_modules
+
+# blog level dependencies
+myblog/node_modules
+
+
+# Build directory
+myblog/.cache
+myblog/public
+myblog/.DS_Store
+
+

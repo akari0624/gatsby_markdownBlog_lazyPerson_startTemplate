@@ -1,0 +1,15 @@
+---
+title: "exampleMD1"
+date: "2018-08-09"
+id: "000001"
+tags: ["LocalImage"]
+---
+
+## 圖片from Internet
+![](https://cdn2.ettoday.net/images/1338/1338728.jpg)  
+photo from [ETToday新聞雲](https://www.ettoday.net/dalemon/post/22278)
+
+## 圖片 from 跟這個markdown檔案在同一層的資料夾底下
+底下是圖片 
+![黑人問號](question_mark.jpg)
+
