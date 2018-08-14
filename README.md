@@ -52,6 +52,26 @@ npm run develop
 - code區塊會自動語法上色  
   thanks to `gatsby-remark-prismjs`
 
+- 在這個template裡，每個markdown上都必須要有一個YAML metadata block，一個上下三中線劃分出來的區塊  
+在這個template裡 目前`至少`必須打上這四個屬性:  
+
+```markdown
+---
+title: "exampleMD1"
+date: "2018-08-09"
+id: "000001"
+tags: ["LocalImage"]
+---
+```
+metatag       | 用途   
+--------------|:------------
+title         | 文章標題 
+date          | 文章日期  
+id            | 文章序號，會被用來在`部落格首頁`排序   
+tags          | 文章標籤，會出現在標籤側邊欄裡，必須用`[]`包起來，多個標籤的話，必須用`,`隔開
+
+注意`:`後面需有空格，才開始接tag的value，數字需用` "..." `包起來  
+YAML metadata block應該是 [pan doc 制定的規定](https://pandoc.org/MANUAL.html#extension-yaml_metadata_block)  
 
 
 ## site meta data
@@ -90,5 +110,6 @@ npm run deploy_to_gh_page
 
 - `gatsby-ssr.js`, `gatsby-browser.js` 目前沒用到。
 
-
+## More reference
+- 也可參考[Gatsby官網上更多的starter](https://next.gatsbyjs.org/docs/gatsby-starters/)
 
