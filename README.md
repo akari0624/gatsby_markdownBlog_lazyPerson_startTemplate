@@ -1,6 +1,6 @@
 # gatsby-blog-start-template
 適合想用gatsby+markdown寫blog但是不想踩雷的人使用,
-已經設定好各種markdown plugin,
+已經設定好各種markdown plugin,  
 2018/08/13  目前是使用gatsby 2.0.0-beta
 
 
@@ -43,10 +43,11 @@ npm install
   ![](question_mark.jpg)
 ```
 
-- 嵌入iframe也沒有問題，都包進來的plugin都已經設定好了  
+- 嵌入iframe也沒有問題，該包進來的plugin都已經設定好了  
 `見 /src/pages/2018/08/10/example_md2/index.md`  
 
 - code區塊會自動語法上色  
+  thanks to `gatsby-remark-prismjs`
 
 - 開啟gatsby建立於webpack devServer上的dev server，以hot reload模式來寫  
 blog
@@ -55,7 +56,7 @@ npm run develop
 ```
 
 ## deploy
-把部落格打包成靜態頁面於`/public`底下，就可以發布到想要放的地方  
+把部落格打包成靜態頁面於`/public`底下，就可以發佈到想要放的地方  
 ```sh
 npm run build
 ```
@@ -67,7 +68,7 @@ npm run build
   YOUR_ROOT_DOMAIN :'https://this_is_your_domain.io',  //domain
   YOUR_DISQUS_SHORTNAME : 'DISQUS_shortName_need_you_to_apply', //留言功能的Disqus shortname,要啟用的話要自己去Disqus申請
   WHEN_MAX_WIDTH_LESS_THAN_THIS_WIDTH_BECOME_ONE_ROW : '750px' // 設定多少寬度以下兩欄的排版會變一欄  
-  PATH_PREFIX: '/gatsby_markdownBlog_lazyPerson_startTemplate', //當你的部署環境是有webApp name的時候在用的，demo網站是放在這個repo的github page上，所以目前是這個repo的名稱
+  PATH_PREFIX: '/gatsby_markdownBlog_lazyPerson_startTemplate', //當你的部署環境是有webapp name的時候在用的，demo網站是放在這個repo的github page上，所以目前是這個repo的名稱
 ```
 PATH_PREFIX更詳細資訊 可參考 [gatsby官方文件](https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/)
 
@@ -78,7 +79,7 @@ PATH_PREFIX更詳細資訊 可參考 [gatsby官方文件](https://www.gatsbyjs.o
 - `gatsby-config.js` 設定資料要經過哪些plugins做處理，和site meta data
 
 
-- `gatsby-node.js`  gatsby在這個檔案裡提供兩個hook`onCreateNode`跟`createPages`，讓人可以加資料在每一頁之後可以在`props`裡取出來
+- `gatsby-node.js`  gatsby在這個檔案裡提供兩個hook`onCreateNode`跟`createPages`，讓人可以加資料，之後在每一頁的`props`裡取出來
 
 - `gatsby-ssr.js`, `gatsby-browser.js` 目前沒用到。
 
