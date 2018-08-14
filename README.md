@@ -52,8 +52,8 @@ npm run develop
 - code區塊會自動語法上色  
   thanks to `gatsby-remark-prismjs`
 
-- 在這個template裡，每個markdown上都必須要有一個YAML metadata block，一個上下三中線劃分出來的區塊  
-在這個template裡 目前`至少`必須打上這四個屬性:  
+- 在這個template裡，每個markdown上都必須要有一個YAML metadata block，一個`上下三中線`劃分出來的區塊  
+目前`至少`必須打上這四個屬性:  
 
 ```markdown
 ---
@@ -68,9 +68,10 @@ metatag       | 用途
 title         | 文章標題 
 date          | 文章日期  
 id            | 文章序號，會被用來在`部落格首頁`排序   
-tags          | 文章標籤，會出現在標籤側邊欄裡，必須用`[]`包起來，多個標籤的話，必須用`,`隔開
+tags          | 文章標籤，會出現在標籤側邊欄裡，必須用`[]`包起來，多個標籤的話:`["food","fun","panda"]`...
 
-注意`:`後面需有空格，才開始接tag的value，數字需用` "..." `包起來  
+注意`:`後面需有空格，才開始接tag的value，不然轉譯markdown時會轉譯失敗。  
+數字需用` "..." `包起來。  
 YAML metadata block應該是 [pan doc 制定的規定](https://pandoc.org/MANUAL.html#extension-yaml_metadata_block)  
 
 
