@@ -1,7 +1,9 @@
 # gatsby-blog-start-template
-適合想用gatsby+markdown寫blog但是不想踩雷的人使用,
+適合想用gatsby+markdown寫blog但是不想踩`環境設定的各種雷`的人使用,
 已經設定好各種markdown plugin,  
-`2018/08/13`  目前是使用gatsby 2.0.0-beta
+`2018/08/13`  目前是使用gatsby 2.0.0-beta  
+在[gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default)之上修改而成  
+
 
 
 ## DEMO Site
@@ -52,12 +54,6 @@ npm run develop
 
 
 
-## deploy
-把部落格打包成靜態頁面於`public`底下，就可以發佈到想要放的地方  
-```sh
-npm run build
-```
-
 ## site meta data
 `conf/site_meta/index.js`裡已經有一些site meta data可以設定  
   ```javaScript
@@ -68,6 +64,20 @@ npm run build
   PATH_PREFIX: '/gatsby_markdownBlog_lazyPerson_startTemplate', //當你的部署環境是有webapp name的時候在用的，demo網站是放在這個repo的github page上，所以目前是這個repo的名稱
 ```
 PATH_PREFIX更詳細資訊 可參考 [gatsby官方文件](https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/)
+
+
+## deploy
+把部落格打包成靜態頁面於`public`底下，就可以發佈到想要放的地方  
+```sh
+npm run build
+```
+
+或是設定好`PATH_PREFIX`之後，如果有連結你自己的github repo的話  
+執行  
+```sh
+npm run deploy_to_gh_page
+```
+就可以直接發佈到github page
 
 ## 如果你想自己加更多功能
 
