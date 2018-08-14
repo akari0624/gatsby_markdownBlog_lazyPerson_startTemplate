@@ -63,14 +63,14 @@ id: "000001"
 tags: ["LocalImage"]
 ---
 ```
-metatag       | 用途   
+metadata      | 用途   
 --------------|:------------
 title         | 文章標題 
 date          | 文章日期  
 id            | 文章序號，會被用來在`部落格首頁`排序   
 tags          | 文章標籤，會出現在標籤側邊欄裡，必須用`[]`包起來，多個標籤的話:`["food","fun","panda"]`...
 
-注意`:`後面需有空格，才開始接tag的value，不然轉譯markdown時會轉譯失敗。  
+注意 `:` 後面需有空格，才開始接tag的value，不然轉譯markdown時會轉譯失敗。  
 數字需用` "..." `包起來。  
 YAML metadata block應該是 [pan doc 制定的規定](https://pandoc.org/MANUAL.html#extension-yaml_metadata_block)  
 
