@@ -18,6 +18,7 @@
     "gatsby-source-filesystem": "^2.0.1-beta.9",
     "gatsby-transformer-remark": "^2.1.1-beta.4",
     "gatsby-transformer-sharp": "^1.6.27",
+    "gatsby-plugin-no-sourcemaps": "^2.0.1",
     "lodash.kebabcase": "^4.1.1",
     "prismjs": "^1.15.0",
     "react": "^16.4.1",
@@ -31,6 +32,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "buildWithouSourceMap": "IsNotApplySourceMap=true gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",

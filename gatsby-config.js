@@ -1,6 +1,43 @@
 
 const SiteMeta = require('./conf/site_meta')
 
+const PLUGINS = [
+  `gatsby-plugin-react-helmet`,
+  `gatsby-remark-copy-linked-files`,
+  `gatsby-transformer-sharp`,
+  `gatsby-plugin-sharp`,
+  `gatsby-plugin-styled-components`,
+   {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `src`,
+      path: `${__dirname}/src/`
+    }
+  }, 
+  {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [
+        `gatsby-remark-responsive-iframe`,
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 590
+          }
+        },
+        `gatsby-remark-prismjs`
+      ]
+    }
+  }
+]
+
+
+if (process.env.IsNotApplySourceMap === 'true'){
+  PLUGINS.push( {
+    resolve: "gatsby-plugin-no-sourcemaps",
+  })
+
+}
 
 module.exports = {
   siteMetadata: {
@@ -12,33 +49,5 @@ module.exports = {
 
   pathPrefix: `${SiteMeta.PATH_PREFIX}`,
 
-  plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-remark-copy-linked-files`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-styled-components`,
-     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `src`,
-        path: `${__dirname}/src/`
-      }
-    }, 
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          `gatsby-remark-responsive-iframe`,
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590
-            }
-          },
-          `gatsby-remark-prismjs`
-        ]
-      }
-    }
-  ]
+  plugins: PLUGINS,
 }

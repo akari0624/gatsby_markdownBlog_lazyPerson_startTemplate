@@ -87,18 +87,27 @@ YAML metadata block應該是 [pan doc 制定的規定](https://pandoc.org/MANUAL
 PATH_PREFIX更詳細資訊 可參考 [gatsby官方文件](https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/)
 
 
-## deploy
+## build
 把部落格打包成靜態頁面於`public`底下，就可以發佈到想要放的地方  
 ```sh
 npm run build
 ```
 
+## build without sourceMap
+[`sourceMap`](https://blog.teamtreehouse.com/introduction-source-maps)  
+簡單來說`sourceMap`就是webpack在做打包時，讓我們就算js都已經是壓縮過的了，在打開瀏覽器的devTool的時候還是能夠看到未壓縮前的js code，這會在`public`資料夾底下針對一個js bundle file就產生出一個對應的 `somebundle.js.map`檔案，有點增加了部署時要傳輸的檔案量，還有既然JS都壓縮了就是不希望別人看到source。如果這是你希望的，那你在build的時候就應該使用這個指令。
+```sh
+npm run buildWithouSourceMap
+```
+
+## deploy
 或是設定好`PATH_PREFIX`之後，如果有連結你自己的github repo的話  
 執行  
 ```sh
 npm run deploy_to_gh_page
 ```
 就可以直接發佈到github page
+
 
 ## 如果你想自己加更多功能
 
