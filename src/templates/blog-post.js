@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { DiscussionEmbed } from 'disqus-react'
 import PropTypes from 'prop-types'
-import Styled from 'Styled-Components'
+import Styled from 'styled-components'
 
 import Layout from '../components/layout'
 
