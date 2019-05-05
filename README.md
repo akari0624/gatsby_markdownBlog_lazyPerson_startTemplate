@@ -1,7 +1,7 @@
 # gatsby-blog-start-template
 適合想用gatsby+markdown寫blog但是不想踩`環境設定的各種雷`的人使用,
 已經設定好各種markdown plugin,  
-`2018/08/13`  目前是使用gatsby 2.0.0-beta  
+`2019/05/05`  目前是使用gatsby 2.4.2  
 在[gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default)之上修改而成  
 
 
