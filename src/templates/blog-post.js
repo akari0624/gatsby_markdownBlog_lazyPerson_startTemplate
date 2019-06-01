@@ -49,7 +49,7 @@ const BlogPostDetail = (props) => {
         <h1>{ post.frontmatter.title }</h1>
         <div>{ post.frontmatter.date }</div>
         <TagDiv>文章標籤：{renderHorizontalTags(post.frontmatter.tags)}</TagDiv>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div>{this.props.children}</div>
       </article>
       <DivInMiddle>response</DivInMiddle>
       <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
@@ -69,7 +69,7 @@ export const query = graphql`
         rootDomain
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title

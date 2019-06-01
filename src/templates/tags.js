@@ -65,7 +65,7 @@ const renderOtherTags = (currTags, allTagsArr) => {
 
 const IndexPage = ({pageContext, data}) => {
   const {tTag, allTagsArr} = pageContext
-  const {edges} = data.allMarkdownRemark
+  const {edges} = data.allMdx
   const oneRowWidth = data.site.siteMetadata.oneRowWidth
   //console.log('pageContext',pageContext)
   return (
@@ -96,7 +96,7 @@ export const query = graphql`
       }
     }
     
-    allMarkdownRemark(filter: {frontmatter: { tags: { in: [$tTag] } } } ) {
+    allMdx(filter: {frontmatter: { tags: { in: [$tTag] } } } ) {
      edges{
        node {
          frontmatter {

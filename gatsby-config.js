@@ -14,10 +14,26 @@ const PLUGINS = [
       path: `${__dirname}/src/`
     }
   }, 
+  // {
+  //   resolve: `gatsby-transformer-remark`,
+  //   options: {
+  //     plugins: [
+  //       `gatsby-remark-responsive-iframe`,
+  //       {
+  //         resolve: `gatsby-remark-images`,
+  //         options: {
+  //           maxWidth: 590
+  //         }
+  //       },
+  //       `gatsby-remark-prismjs`
+  //     ]
+  //   }
+  // },
+  
   {
-    resolve: `gatsby-transformer-remark`,
+    resolve: `gatsby-mdx`,
     options: {
-      plugins: [
+      gatsbyRemarkPlugins: [
         `gatsby-remark-responsive-iframe`,
         {
           resolve: `gatsby-remark-images`,
@@ -26,9 +42,13 @@ const PLUGINS = [
           }
         },
         `gatsby-remark-prismjs`
-      ]
+      ],
+      defaultLayputs: {
+        posts: require.resolve("./src/templates/blog-post.js"),
+        default: require.resolve("./src/templates/blog-post.js"),
+      }
     }
-  }
+  },
 ]
 
 

@@ -48,7 +48,7 @@ const renderBlogPostTitle = posts => (
 
 
 const IndexPage = ({data}) => {
-  const allMarkdownRemark = data.allMarkdownRemark
+  const allMarkdownRemark = data.allMdx
   const oneRowWidth = data.site.siteMetadata.oneRowWidth
   return (
     <Layout>
@@ -78,7 +78,7 @@ export const query = graphql`
       }
     }
 
-    allMarkdownRemark(
+    allMdx(
       sort:{fields:[frontmatter___date], order: DESC }
     ) {
       totalCount

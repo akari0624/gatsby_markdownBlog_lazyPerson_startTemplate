@@ -15,7 +15,7 @@ const path = require('path')
 const _kababCase = require('lodash.kebabcase')
 
 
-const _MarkdownRemark = 'MarkdownRemark'
+const __allMdx = 'Mdx'
 
  const getTagsFromPosts = (posts) => {
 
@@ -43,7 +43,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
  
   const { createNodeField } = actions
 
-  if(node.internal.type === _MarkdownRemark){
+  if(node.internal.type === __allMdx){
    
     const filePathSlug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
@@ -59,12 +59,34 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return new Promise((resolve, reject) => {
   
-    // Query data with GraphQL 
+    // Query data with GraphQL md files
+    // const gMdPromise = graphql(`
+    //   {
+    //     allMarkdownRemark{
+    //       edges {
+    //         node {
+    //           frontmatter {
+    //             tags
+    //           }
+    //           fields {
+    //             slug
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // `)
     graphql(`
       {
-        allMarkdownRemark{
+        allMdx {
           edges {
             node {
+              parent {
+                ... on File {
+                  absolutePath
+                  name
+                }
+              }
               frontmatter {
                 tags
               }
@@ -77,20 +99,27 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       // Map the query results to pages
-      const allMarkdownRemark = result.data.allMarkdownRemark
-        allMarkdownRemark.edges.forEach(({node}) => {
+
+      if (result.errors) {
+        console.log(result.errors);
+        reject(result.errors);
+      }
+
+      const { allMdx } = result.data
+       allMdx.edges.forEach(({node}) => {
+         console.log('node', node)
         createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/blog-post.js`),
+          path: node.parent.name,
+          component: node.parent.absolutePath,
           context:{ 
             // Data passed to context is available
             // in page queries as GraphQL variables.
-          slug: node.fields.slug,
+          slug: node.slug,
            }
         })
       })
 
-      const tagsSet = getTagsFromPosts(allMarkdownRemark.edges)
+      const tagsSet = getTagsFromPosts(allMdx.edges)
 
       Array.from(tagsSet).forEach(tag => {
 
