@@ -11,6 +11,7 @@
     "disqus-react": "^1.0.5",
     "gatsby": "^2.4.2",
     "gatsby-mdx": "^0.6.3",
+    "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-catch-links": "^2.0.13",
     "gatsby-plugin-no-sourcemaps": "^2.0.2",
     "gatsby-plugin-react-helmet": "^3.0.12",

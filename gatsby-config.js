@@ -1,34 +1,19 @@
-
+const alias = require('./webpack-alias');
 const SiteMeta = require('./conf/site_meta')
 
 const PLUGINS = [
+  {
+    resolve: `gatsby-plugin-alias-imports`,
+    options: {
+      alias,
+      extensions: [],
+    },
+  },
   `gatsby-plugin-react-helmet`,
   `gatsby-remark-copy-linked-files`,
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`,
   `gatsby-plugin-styled-components`,
-   {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      name: `src`,
-      path: `${__dirname}/src/`
-    }
-  }, 
-  // {
-  //   resolve: `gatsby-transformer-remark`,
-  //   options: {
-  //     plugins: [
-  //       `gatsby-remark-responsive-iframe`,
-  //       {
-  //         resolve: `gatsby-remark-images`,
-  //         options: {
-  //           maxWidth: 590
-  //         }
-  //       },
-  //       `gatsby-remark-prismjs`
-  //     ]
-  //   }
-  // },
   
   {
     resolve: `gatsby-mdx`,
@@ -44,17 +29,25 @@ const PLUGINS = [
         `gatsby-remark-prismjs`
       ],
       defaultLayputs: {
-        posts: require.resolve("./src/templates/blog-post.js"),
-        default: require.resolve("./src/templates/blog-post.js"),
-      }
+        default: require.resolve(`./src/templates/blog-post-mdx.js`),
+      },
+      decks: []
     }
   },
+
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `pages`,
+      path: `${__dirname}/src/pages`
+    }
+  }
 ]
 
 
 if (process.env.IsNotApplySourceMap === 'true'){
   PLUGINS.push( {
-    resolve: "gatsby-plugin-no-sourcemaps",
+    resolve: `gatsby-plugin-no-sourcemaps`,
   })
 
 }
