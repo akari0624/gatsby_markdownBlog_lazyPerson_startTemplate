@@ -64,6 +64,7 @@ const renderOtherTags = (currTags, allTagsArr) => {
 
 
 const IndexPage = ({pageContext, data}) => {
+  console.log('data', data)
   const {tTag, allTagsArr} = pageContext
   const {edges} = data.allMdx
   const oneRowWidth = data.site.siteMetadata.oneRowWidth

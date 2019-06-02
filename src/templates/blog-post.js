@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 
 import Layout from '../components/layout'
+import { YOUR_DISQUS_SHORTNAME, rootDomain } from '../../conf/site_meta'
 
 // <link href="https://fonts.googleapis.com/css?family=Roboto:400,900i" rel="stylesheet">
 
@@ -31,28 +32,27 @@ const renderHorizontalTags = (tagsArr) => (
 
 
 const BlogPostDetail = (props) => {
- 
-  const post = props.data.markdownRemark
-  const { disqusShortname, rootDomain }  = props.data.site.siteMetadata;
+  console.log('ppppppp', props)
+  const { children, location } = props
+  const  {frontmatter} = props.pathContext
 
-   // const { previous, next } = props.pageContext;
-    const disqusConfig = {
-      url: `${rootDomain}${props.location.pathname}`,
-      identifier: post.frontmatter.id,
-      title: post.frontmatter.title,
-    }
+  const disqusConfig = {
+    url: `${rootDomain}${location.pathname}`,
+    identifier: frontmatter.id,
+    title: frontmatter.title,
+  }
 
   return(
 
     <Layout>
       <article> 
-        <h1>{ post.frontmatter.title }</h1>
-        <div>{ post.frontmatter.date }</div>
-        <TagDiv>文章標籤：{renderHorizontalTags(post.frontmatter.tags)}</TagDiv>
-        <div>{this.props.children}</div>
+        <h1>{ frontmatter.title }</h1>
+        <div>{ frontmatter.date }</div>
+        <TagDiv>文章標籤：{renderHorizontalTags(frontmatter.tags)}</TagDiv>
+        <div>{children}</div>
       </article>
       <DivInMiddle>response</DivInMiddle>
-      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+      <DiscussionEmbed shortname={YOUR_DISQUS_SHORTNAME} config={disqusConfig} />
     </Layout>
       
   )
@@ -60,30 +60,33 @@ const BlogPostDetail = (props) => {
 
 
 
+// mdx 的page不能寫在page wrapper template裡，要寫在mdx裡 或是 mdx裡import的component, 
+// 這個BlogPostDetail的props裡不會有data這個屬性，這是它(gatsby-mdx)跟 gatsby-transformer-remark不一樣的地方
+// @see  https://gatsby-mdx.netlify.com/guides/programmatically-creating-pages
 
-export const query = graphql`
-  query($slug: String!) {
-    site {
-      siteMetadata {
-        disqusShortname
-        rootDomain
-      }
-    }
-    mdx(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
-        date
-        tags
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($slug: String!) {
+//     site {
+//       siteMetadata {
+//         disqusShortname
+//         rootDomain
+//       }
+//     }
+//     mdx(fields: { slug: { eq: $slug } }) {
+//       frontmatter {
+//         title
+//         date
+//         tags
+//       }
+//     }
+//   }
+// `
 
 
 BlogPostDetail.propTypes = {
-  data:PropTypes.object.isRequired,
-  location:PropTypes.object,
+ // gatsby-mdx會傳什麼進props裡 可以看
+ // https://gatsby-mdx-kitchen-sink.netlify.com/basic-page-query/ 
+ // https://github.com/ChristopherBiscardi/gatsby-mdx/issues/238
 }
 
 

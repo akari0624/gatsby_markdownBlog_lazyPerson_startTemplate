@@ -44,7 +44,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if(node.internal.type === __allMdx){
-   
     const filePathSlug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
       node,
@@ -109,12 +108,12 @@ exports.createPages = ({ graphql, actions }) => {
        allMdx.edges.forEach(({node}) => {
          console.log('node', node)
         createPage({
-          path: node.parent.name,
-          component: node.parent.absolutePath,
+          path: node.fields.slug,
+          component: path.resolve(`./src/templates/blog-post.js`),
           context:{ 
             // Data passed to context is available
             // in page queries as GraphQL variables.
-          slug: node.slug,
+          slug: node.fields.slug,
            }
         })
       })

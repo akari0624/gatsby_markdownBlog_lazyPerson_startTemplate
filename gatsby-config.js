@@ -28,8 +28,8 @@ const PLUGINS = [
         },
         `gatsby-remark-prismjs`
       ],
-      defaultLayputs: {
-        default: require.resolve(`./src/templates/blog-post-mdx.js`),
+      defaultLayouts: {
+        pages: require.resolve(`./src/templates/blog-post.js`),
       },
       decks: []
     }
