@@ -80,6 +80,7 @@ exports.createPages = ({ graphql, actions }) => {
         allMdx {
           edges {
             node {
+              id
               parent {
                 ... on File {
                   absolutePath
@@ -108,12 +109,13 @@ exports.createPages = ({ graphql, actions }) => {
        allMdx.edges.forEach(({node}) => {
          console.log('node', node)
         createPage({
-          path: node.fields.slug,
+          path: node.parent.name,
           component: path.resolve(`./src/templates/blog-post.js`),
           context:{ 
             // Data passed to context is available
             // in page queries as GraphQL variables.
           slug: node.fields.slug,
+          id: node.id
            }
         })
       })
