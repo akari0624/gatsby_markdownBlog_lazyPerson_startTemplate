@@ -5,6 +5,8 @@ id: "000003"
 tags: ["MDX", "react", "JAM stack"]
 ---
 
+import { graphql } from 'gatsby'
+
 # test title H1
 ## test title H2
 
@@ -28,3 +30,21 @@ photo from [ETToday新聞雲](https://www.ettoday.net/dalemon/post/22278)
 import MainContent from '@components/main-content.jsx';
 
 <MainContent />
+
+import MainContentPagelevel from './main-content.js'
+
+<MainContentPagelevel />
+
+<div>{props.data.site.siteMetadata.disqusShortname}</div>
+
+export const pageQuery = graphql`
+query SiteMetaQuery{
+  site {
+    siteMetadata {
+      disqusShortname
+      rootDomain
+    }
+  }
+}
+`
+
