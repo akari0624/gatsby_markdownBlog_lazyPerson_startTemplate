@@ -40,7 +40,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf public/*",
-    "build": "gatsby build",
+    "build": "cross-env IS_PRODUCTION=Y gatsby build",
     "buildWithouSourceMap": "npm run clean && IsNotApplySourceMap=true  gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@types/d3-array": "^2.0.0",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
