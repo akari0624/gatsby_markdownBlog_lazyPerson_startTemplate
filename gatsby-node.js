@@ -53,6 +53,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+const IS_PRODUCTION = process.env.IS_PRODUCTION
+console.log('IS_PRODUCTION', IS_PRODUCTION)
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -109,7 +111,7 @@ exports.createPages = ({ graphql, actions }) => {
        allMdx.edges.forEach(({node}) => {
          console.log('node', node)
         createPage({
-          path: node.parent.name,
+          path: IS_PRODUCTION ? node.fields.slug : node.parent.name,
           component: path.resolve(`./src/templates/blog-post.js`),
           context:{ 
             // Data passed to context is available
