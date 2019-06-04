@@ -34,7 +34,7 @@ const renderHorizontalTags = (tagsArr) => (
 const BlogPostDetail = (props) => {
   console.log('ppppppp', props)
   const { children, location } = props
-  const  {frontmatter} = props.pathContext
+  const  {frontmatter} = props.pageContext
 
   const disqusConfig = {
     url: `${rootDomain}${location.pathname}`,
