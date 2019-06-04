@@ -8,8 +8,9 @@
     "@mdx-js/react": "^1.0.20",
     "@mdx-js/tag": "^0.20.3",
     "babel-plugin-styled-components": "^1.10.0",
+    "d3-array": "^2.2.0",
     "disqus-react": "^1.0.5",
-    "gatsby": "^2.4.2",
+    "gatsby": "^2.8.2",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-catch-links": "^2.0.13",
@@ -30,7 +31,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-live": "^2.1.2",
+    "react-live": "^1.10.1",
     "styled-components": "^4.2.0"
   },
   "keywords": [
@@ -47,12 +48,12 @@
     "deploy_to_gh_page": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
+    "@types/d3-array": "^2.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "gatsby-cli": "^1.1.58",
     "gh-pages": "^1.2.0",
     "prettier": "^1.13.7",
     "rimraf": "^2.6.2"
