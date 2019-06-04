@@ -1,39 +1,112 @@
 ---
-title: "example_MDX_1"
+title: "introduce MDX and react-live"
 date: "2019-06-01"
 id: "000003"
 tags: ["MDX", "react", "JAM stack"]
 ---
 
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
-# test title H1
-## test title H2
+import basicShapesCode from './code/react1.example';
+import d3ArrayMaxExample from './code/d3-array-max.example';
+import LiveEditableCode from '@components/LiveEditableCode';
+import { max, sum, min } from 'd3-array';
 
-- test javascript code
+# MDX介紹
+
+
+## 在mdx裡一樣可以用markdown語法，這是H2
+
+- 一樣可以用\`\`\`快速做出程式碼片段，並搭配`prism`來`highlight`，
 ``` javascript
   console.log('ptt')
 
   document.querySelector('#taiwanNo1')
 ```
+- `prism`的`gatsby-plugin`可以選擇要載入哪個`css`,但是影響是`global`等級的，
 
-- list1
-- list2
-- list3
 
 ## 圖片from Internet in mdx
+- 在`gatsby-mdx`搭配以前的`gatsbyRemarkPlugins`在使用`plugin`一樣可以處理`圖片`, `iframe`那些
+
+### 圖片  resolve by `gatsby-remark-images`
 ![](https://cdn2.ettoday.net/images/1338/1338728.jpg)  
 photo from [ETToday新聞雲](https://www.ettoday.net/dalemon/post/22278)
 
+### iframe resolve by `gatsby-remark-responsive-iframe`
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eVRXjoZfuls" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-import MainContent from '@components/main-content.jsx';
+### mdx的超強功能，因為mdx是markdown + JSX, 所以可以在mdx裡import 寫好的react component
+  - 這裡引用`joshwcomeau`使用`react-live`做出來的 `LiveEditableCode` [origin source](https://github.com/joshwcomeau/blog/blob/master/src/components/LiveEditableCode/LiveEditableCode.js)
 
-<MainContent />
+<LiveEditableCode 
+      id="basic-shapes"
+      code={basicShapesCode}
+      split={[66, 34]}
+      maxHeight={585}/>
+
+- 注意如果在`markdown`之間做`import`，前後都要空一行，不然mdx會parse失敗，寫`jsx`時也必須要前後空一行
 
 import MainContentPagelevel from './main-content.js'
 
 <MainContentPagelevel />
+
+  
+# example: import some dependencies into scope
+- `react-live`的`LiveProvider`這個用來包在能夠"live"的程式碼片段的最外面的`component`有一個`props`叫`scope`，是用來讓人傳入要執行的程式碼時用到的依賴。
+- 在這個`mdx檔`裡先`import`好(btw 可以寫在最上面)，然後透過這個`scope`傳進被parse然後要來`live`的程式碼裡
+- 這邊我傳入`d3-array`的`max`, `min`, `sum`為例，下面的`能夠live`的code區塊就變成讓人能夠快速了解`d3-array`的`max`, `min`, `sum`是在`幹麻`，並且動手玩玩看的最好的範例，而且你可以在它之後用`markdown語法`寫更多說明
+
+``` javascript
+import d3ArrayMaxExample from './code/d3-array-max.example';  //載入程式碼  就是一堆字串
+import LiveEditableCode from '@components/LiveEditableCode';  // 使用精心做好的 LiveEditableCode component
+import { max, sum, min } from 'd3-array';
+
+// .....  使用
+
+<LiveEditableCode 
+      id="d3-array-max"
+      scope={{max, sum, min}}
+      code={d3ArrayMaxExample}
+      split={[66, 34]}
+      maxHeight={585}/>
+
+```
+所以上面的寫在`mdx`裡的`import`和`jsx`會產生出下面的內容：  
+
+<LiveEditableCode 
+      id="d3-array-max"
+      scope={{min, max, sum}}
+      code={d3ArrayMaxExample}
+      split={[66, 34]}
+      maxHeight={585}/>
+
+左邊的變動會立即在右邊變動，這不是` codepen`的`嵌入iframe`,也不是`codesandbox`，  
+完完全全就是我們可以集中起來版控的，跟著我們的文章一起發布的，可讓人立即修改 立即更新執行結果 的程式碼。
+
+因為這個mdx被`gatsby-mdx`當作`component`對待，所以在我的mdx raw file裡最下面可以看到我使用`gatsby`包裝過後的`graphQL`的`pageQuery`機制
+``` javascript
+// export name必須叫`pageQuery`
+export const pageQuery = graphql`
+query SiteMetaQuery{
+  site {
+    siteMetadata {
+      disqusShortname
+      rootDomain
+    }
+  }
+}
+`
+```
+
+這個`graphQL`查詢的結果會被注入進這個`mdx`的props的`data`屬性底下
+``` jsx
+  <div>{props.data.site.siteMetadata.disqusShortname}</div>
+```
+而`siteMetadata`這組資料是在`gatsby-config.js`裡被我們設定，
+
+
+`disqusShortname`的內容：
 
 <div>{props.data.site.siteMetadata.disqusShortname}</div>
 

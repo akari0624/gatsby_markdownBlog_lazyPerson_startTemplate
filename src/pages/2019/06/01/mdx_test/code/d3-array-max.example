@@ -1,0 +1,17 @@
+// I'm editable!
+
+// import { max, min, sum } from 'd3-array'
+
+const data = [3, 40 ,50, 100, 200];
+
+const maxResult = max(data);
+const minResult = min(data);
+const sumResult = sum(data);
+
+render(
+  <>
+    <div>最大數：{maxResult}</div>
+    <div>最小數：{minResult}</div>
+    <div>總和：{sumResult}</div>
+  </>
+);
