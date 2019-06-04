@@ -6,7 +6,7 @@ import Styled from 'styled-components'
 
 import Layout from '../components/layout'
 import { YOUR_DISQUS_SHORTNAME, rootDomain } from '../../conf/site_meta'
-
+import {GlobalStyle} from '../_styles/prism-theme'
 // <link href="https://fonts.googleapis.com/css?family=Roboto:400,900i" rel="stylesheet">
 
 const TagDiv = Styled.div`
@@ -45,6 +45,7 @@ const BlogPostDetail = (props) => {
   return(
 
     <Layout>
+      <GlobalStyle />
       <article> 
         <h1>{ frontmatter.title }</h1>
         <div>{ frontmatter.date }</div>
@@ -64,23 +65,24 @@ const BlogPostDetail = (props) => {
 // 這個BlogPostDetail的props裡不會有data這個屬性，這是它(gatsby-mdx)跟 gatsby-transformer-remark不一樣的地方
 // @see  https://gatsby-mdx.netlify.com/guides/programmatically-creating-pages
 
-// export const query = graphql`
-//   query($slug: String!) {
-//     site {
-//       siteMetadata {
-//         disqusShortname
-//         rootDomain
-//       }
-//     }
-//     mdx(fields: { slug: { eq: $slug } }) {
-//       frontmatter {
-//         title
-//         date
-//         tags
-//       }
-//     }
-//   }
-// `
+export const pageQuery = graphql`
+  query($id: String!) {
+    site {
+      siteMetadata {
+        disqusShortname
+        rootDomain
+      }
+    }
+    mdx(id: { eq: $id }) {
+  
+      frontmatter {
+        title
+        date
+        tags
+      }
+    }
+  }
+`
 
 
 BlogPostDetail.propTypes = {
