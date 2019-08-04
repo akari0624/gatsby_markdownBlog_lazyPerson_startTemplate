@@ -46,7 +46,7 @@ const BlogPostDetail = (props) => {
 
     <Layout>
       <GlobalStyle />
-      <article> 
+      <article>
         <h1>{ frontmatter.title }</h1>
         <div>{ frontmatter.date }</div>
         <TagDiv>文章標籤：{renderHorizontalTags(frontmatter.tags)}</TagDiv>
