@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby'
 import Styled from 'styled-components'
 import _kababCase  from 'lodash.kebabcase'
 import Layout from '../components/layout'
+import { LeftArticleListArea, RightTagsArea } from '../components/indexPageUI'
 
 
 const FlexboxDivWrapper = Styled.section`
@@ -15,23 +16,6 @@ const FlexboxDivWrapper = Styled.section`
     flex-direction:column;
     }
 
-`
-
-const LeftArticleListArea = Styled.div`
-  width:70%;
-
-   @media (max-width:${props => props.oneRowWidth}){  
-    width:100%;
-    }
-`
-
-const RightTagsArea = Styled.div`
-  width:30%;
-
-  @media (max-width:${props => props.oneRowWidth}){
-    margin-top:2em;
-    width:100%;
-    }
 `
 
 const renderBlogPostTitle = posts => (
@@ -62,15 +46,20 @@ const renderOtherTags = (currTags, allTagsArr) => {
 }
 
 
+const tagsPageData = {
+      title: 'Morris\' blog',
+      tagsString: '',
+      description: '標籤頁'
+    }
+
 
 const IndexPage = ({pageContext, data}) => {
-  console.log('data', data)
   const {tTag, allTagsArr} = pageContext
   const {edges} = data.allMdx
   const oneRowWidth = data.site.siteMetadata.oneRowWidth
   //console.log('pageContext',pageContext)
   return (
-    <Layout>
+    <Layout pageData={tagsPageData}>
       <FlexboxDivWrapper oneRowWidth={oneRowWidth}>
         <LeftArticleListArea oneRowWidth={oneRowWidth}>
           <h1>標籤：{tTag}</h1>
@@ -90,7 +79,6 @@ const IndexPage = ({pageContext, data}) => {
 
 export const query = graphql`
   query($tTag: String!) {
-
     site {
       siteMetadata {
         oneRowWidth
@@ -115,4 +103,3 @@ export const query = graphql`
 
 
 export default IndexPage
-

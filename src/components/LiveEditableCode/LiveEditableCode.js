@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import styled from 'styled-components';
-import { COLORS, BREAKPOINTS, EXTRA_WIDE_WIDTH, READING_WIDTH } from '../../../constants';
+import { COLORS, BREAKPOINTS, EXTRA_WIDE_WIDTH, READING_WIDTH } from '../../_styles/constants';
 
 const MaxWidthWrapper = styled.div`
   position: relative;

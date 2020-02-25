@@ -1,66 +1,88 @@
-const alias = require('./webpack-alias');
-const SiteMeta = require('./conf/site_meta')
+const alias = require('./webpack-alias')
+const conf = require('./conf/site_meta')
 
 const PLUGINS = [
   {
-    resolve: `gatsby-plugin-alias-imports`,
+    resolve: 'gatsby-plugin-alias-imports',
     options: {
       alias,
       extensions: [],
     },
   },
-  `gatsby-plugin-react-helmet`,
-  `gatsby-remark-copy-linked-files`,
-  `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`,
-  `gatsby-plugin-styled-components`,
-  
+  'gatsby-plugin-react-helmet',
+  'gatsby-remark-copy-linked-files',
+  'gatsby-transformer-sharp',
+  'gatsby-plugin-sharp',
+  'gatsby-plugin-styled-components',
+  'gatsby-plugin-twitter',
   {
-    resolve: `gatsby-mdx`,
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      name: 'src',
+      path: `${__dirname}/src/`,
+    },
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      name: 'posts',
+      path: `${__dirname}/src/content/`,
+    },
+  },
+  {
+    resolve: 'gatsby-plugin-page-creator',
+    options: {
+      path: `${__dirname}/src/content/`,
+    },
+  },
+  {
+    resolve: 'gatsby-plugin-mdx',
     options: {
       gatsbyRemarkPlugins: [
-        `gatsby-remark-responsive-iframe`,
+        'gatsby-remark-responsive-iframe',
         {
-          resolve: `gatsby-remark-images`,
+          resolve: 'gatsby-remark-images',
           options: {
-            maxWidth: 590
-          }
+            maxWidth: 590,
+          },
         },
-        `gatsby-remark-prismjs`
+        'gatsby-remark-prismjs',
+        'gatsby-remark-copy-linked-files',
       ],
       defaultLayouts: {
-        pages: require.resolve(`./src/templates/blog-post.js`),
+        posts: require.resolve('./src/templates/blog-post.js'),
       },
-      decks: []
-    }
+      decks: [],
+    },
   },
-
-  {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      name: `pages`,
-      path: `${__dirname}/src/pages`
-    }
-  }
 ]
 
-
-if (process.env.IsNotApplySourceMap === 'true'){
-  PLUGINS.push( {
-    resolve: `gatsby-plugin-no-sourcemaps`,
+if (process.env.IsNotApplySourceMap === 'true') {
+  PLUGINS.push({
+    resolve: 'gatsby-plugin-no-sourcemaps',
   })
+}
 
+if(conf.GA_TRACKING_ID) {
+  PLUGINS.push(
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: conf.GA_TRACKING_ID,
+        // this option places the tracking script into the head of the DOM
+        head: true,
+        // other options
+      },
+    }
+  )
 }
 
 module.exports = {
   siteMetadata: {
-    title: `${SiteMeta.YOUR_BLOG_TITLE}`,
-    disqusShortname: `${SiteMeta.YOUR_DISQUS_SHORTNAME}`,
-    rootDomain: `${SiteMeta.YOUR_ROOT_DOMAIN}`,
-    oneRowWidth:`${SiteMeta.WHEN_MAX_WIDTH_LESS_THAN_THIS_WIDTH_BECOME_ONE_ROW}`,
+    title: 'Somebody\'s blog',
+    disqusShortname: 'yourDisqusShortName',
+    rootDomain: 'https://yourRootDomain.com',
+    oneRowWidth: '750px',
   },
-
-  pathPrefix: `${SiteMeta.PATH_PREFIX}`,
-
   plugins: PLUGINS,
 }

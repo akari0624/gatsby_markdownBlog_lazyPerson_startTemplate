@@ -4,11 +4,8 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import Header from './header'
 import './layout.css'
-// import 'prismjs/themes/prism-tomorrow.css'
 
-
-
-const Layout = ({ children, data }) => (
+const Layout = ({ children, pageData }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -19,16 +16,16 @@ const Layout = ({ children, data }) => (
         }
       }
     `}
-    render={data => (
-      <>
+    render={siteData => (
+      <main>
         <Helmet
-          title={data.site.siteMetadata.title}
+          title={pageData.title}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'description', content: pageData.description },
+            { name: 'keywords', content: pageData.tagsString },
           ]}
         />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={siteData.site.siteMetadata.title} />
         <div
           style={{
             margin: '0 auto',
@@ -39,13 +36,18 @@ const Layout = ({ children, data }) => (
         >
           {children}
         </div>
-      </>
+      </main>
     )}
   />
 )
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  pageData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    tagsString: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
 }
 
 export default Layout
