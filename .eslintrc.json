@@ -15,7 +15,8 @@
       "sourceType": "module"
   },
   "plugins": [
-      "react"
+      "react",
+      "markdown"
   ],
   "rules": {
       "indent": [
@@ -35,7 +36,8 @@
           "never"
       ],
       "no-console": "off",
-      "react/display-name":["off"]
+      "react/display-name":["off"],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "globals": {
       "describe":false,

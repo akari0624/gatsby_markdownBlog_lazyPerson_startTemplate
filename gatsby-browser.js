@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+require('prismjs/plugins/line-numbers/prism-line-numbers.css')
+require('prismjs/themes/prism-solarizedlight.css')
+require('./src/_styles/global.css')

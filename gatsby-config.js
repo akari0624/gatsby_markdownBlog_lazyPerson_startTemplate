@@ -1,5 +1,5 @@
 const alias = require('./webpack-alias')
-const conf = require('./conf/site_meta')
+const SiteMeta = require('./conf/site_meta')
 
 const PLUGINS = [
   {
@@ -46,8 +46,10 @@ const PLUGINS = [
             maxWidth: 590,
           },
         },
+        'gatsby-remark-autolink-headers',
         'gatsby-remark-prismjs',
         'gatsby-remark-copy-linked-files',
+        'gatsby-remark-external-links',
       ],
       defaultLayouts: {
         posts: require.resolve('./src/templates/blog-post.js'),
@@ -63,26 +65,25 @@ if (process.env.IsNotApplySourceMap === 'true') {
   })
 }
 
-if(conf.GA_TRACKING_ID) {
-  PLUGINS.push(
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: conf.GA_TRACKING_ID,
-        // this option places the tracking script into the head of the DOM
-        head: true,
-        // other options
-      },
-    }
-  )
+if (SiteMeta.GA_TRACKING_ID) {
+  PLUGINS.push({
+    resolve: 'gatsby-plugin-google-analytics',
+    options: {
+      trackingId: `${SiteMeta.YOUR_GOOGLE_ANALYST_ID}`,
+      // this option places the tracking script into the head of the DOM
+      head: true,
+      // other options
+    },
+  })
 }
 
 module.exports = {
+  pathPrefix: SiteMeta.PATH_PREFIX ? SiteMeta.PATH_PREFIX : '',
   siteMetadata: {
-    title: 'Somebody\'s blog',
-    disqusShortname: 'yourDisqusShortName',
-    rootDomain: 'https://yourRootDomain.com',
-    oneRowWidth: '750px',
+    title: `${SiteMeta.YOUR_BLOG_TITLE}`,
+    disqusShortname: `${SiteMeta.YOUR_DISQUS_SHORTNAME}`,
+    rootDomain: `${SiteMeta.YOUR_ROOT_DOMAIN}`,
+    oneRowWidth: `${SiteMeta.WHEN_MAX_WIDTH_LESS_THAN_THIS_WIDTH_BECOME_ONE_ROW}`,
   },
   plugins: PLUGINS,
 }

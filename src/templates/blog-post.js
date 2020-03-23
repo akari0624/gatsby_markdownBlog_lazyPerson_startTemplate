@@ -4,7 +4,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import { siteMetadata } from '../../gatsby-config'
+import siteMetadata from '../../conf/site_meta'
 import { GlobalStyle } from '../_styles/prism_theme'
 import Layout from '../components/layout'
 

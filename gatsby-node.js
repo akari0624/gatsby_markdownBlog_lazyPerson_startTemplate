@@ -109,3 +109,16 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 }
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.example$/,
+          use: 'raw-loader',
+        },
+      ],
+    },
+  });
+};

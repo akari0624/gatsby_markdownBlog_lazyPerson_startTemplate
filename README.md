@@ -1,10 +1,11 @@
 # gatsby-blog-start-template
 適合想用gatsby+markdown寫blog但是不想踩`環境設定的各種雷`的人使用,
 已經設定好各種markdown plugin,  
-`2019/05/05`  目前是使用gatsby 2.4.2  
+`2020/03/23`  目前是使用gatsby 2.13.1  
 在[gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default)之上修改而成  
 
-
+## MDX
+本repo預設就是已經是使用目前最先端的mdx格式，content底下的副檔名，不是`.md`而必須是`.mdx`，MDX完全相容markdown的所有特性，並在上面加上更多功能。您完全可以只寫`markdown`，只是檔案的副檔名必須使用`.mdx`，因為plugins只處理`.mdx`的檔案。
 
 ## DEMO Site
 - [on Github page of this repo](https://akari0624.github.io/gatsby_markdownBlog_lazyPerson_startTemplate/)
@@ -25,7 +26,12 @@ cd gatsby_markdownBlog_lazyPerson_startTemplate
 
 - 安裝所有為這個blog-template設定好的 dependencies  
 ```sh
-npm install
+yarn install
+```
+或
+``` sh
+npm install   
+# 如果要用 npm的話，那請再把 `yarn.lock`這個檔案刪除
 ```
 
 - 這樣都沒問題的話，就可以開始用了。  
@@ -39,28 +45,29 @@ npm run develop
 
 ## how to write article 
 
-- markdown全部都寫在`src/pages`底下  
-一層層的年月日的資料夾會變成網址，markdown檔名必須命名為`index.md`  
-`index.md`裡要顯示的圖片就把它跟`index.md`放在同一層，在markdown裡引用即可  
+- markdown全部都寫在`src/content`底下  
+一層層的年月日的資料夾會變成網址，markdown檔名必須命名為`index.mdx`  
+`index.mdx`裡要顯示的圖片就把它跟`index.mdx`放在同一層，在markdown裡引用即可  
 ```markdown
   ![](question_mark.jpg)
 ```
 
 - 嵌入iframe也沒有問題，該包進來的plugin都已經設定好了  
-`見 src/pages/2018/08/10/example_md2/index.md`  
+`見 src/pages/2018/08/10/example_md2/index.mdx`  
 
 - code區塊會自動語法上色  
   thanks to `gatsby-remark-prismjs`
 
 - 在這個template裡，每個markdown上都必須要有一個YAML metadata block，一個`上下三中線`劃分出來的區塊  
-目前`至少`必須打上這四個屬性:  
+目前`至少`必須打上這`五個`屬性:  
 
 ```markdown
 ---
-title: "exampleMD1"
+title: "exampleMDX1"
 date: "2018-08-09"
 id: "000001"
 tags: ["LocalImage"]
+description: "page content description"
 ---
 ```
 metadata      | 用途   
@@ -69,6 +76,7 @@ title         | 文章標題
 date          | 文章日期  
 id            | 文章序號，會被用來在`部落格首頁`排序   
 tags          | 文章標籤，會出現在標籤側邊欄裡，必須用`[]`包起來，多個標籤的話:`["food","fun","panda"]`...
+description   | 文章敘述，會被放到<meta description="...."> 的文字，有助於分享連結時的預覽（例如在Line上）
 
 注意 `:` 後面需有空格，才開始接tag的value，不然轉譯markdown時會轉譯失敗。  
 數字需用` "..." `包起來。  
@@ -122,4 +130,3 @@ npm run deploy_to_gh_page
 
 ## More reference
 - 也可參考[Gatsby官網上更多的starter](https://next.gatsbyjs.org/docs/gatsby-starters/)
-
